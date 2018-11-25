@@ -116,7 +116,7 @@
     <div class="post-header index">
         <h1 class="title">
             <a href="/undefined/undefined/undefined/page/">
-                page
+                java
             </a>
         </h1>
         <div class="post-info">
@@ -130,32 +130,24 @@
 
     
         <div class="content">
-            <p>$$<br>test!<br>$$</p>
-<table>
-<thead>
-<tr>
-<th>aaaaa</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+            <h4 id="IO流"><a href="#IO流" class="headerlink" title="IO流"></a>IO流</h4><p>JAVA中“流”位於java.io.*中</p>
+<p>分爲 字節流—–InputStream，OutputStream</p>
+<p>​         字符流—–Read，Write</p>
+<p><img src="https://images2015.cnblogs.com/blog/999727/201611/999727-20161109130405092-2025696523.png" alt="img"><!--注釋：所有字節，字符流類都必須進行異常處理--></p>
+<h5 id="實例"><a href="#實例" class="headerlink" title="實例"></a>實例</h5><p>InputStream的應用</p>
+<p>1.案例：讀取文件内容</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">hello</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">       String fileName=<span class="string">"D:"</span>+File.separator+<span class="string">"hello.txt"</span>;</span><br><span class="line">       File f=<span class="keyword">new</span> File(fileName);</span><br><span class="line">       InputStream in=<span class="keyword">new</span> FileInputStream(f);</span><br><span class="line">       <span class="keyword">byte</span>[] b=<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">       in.read(b);</span><br><span class="line">       in.close();</span><br><span class="line">       System.out.println(<span class="keyword">new</span> String(b));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<!---->
+<p>2.逐字節讀</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">hello</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">       String fileName=<span class="string">"D:"</span>+File.separator+<span class="string">"hello.txt"</span>;</span><br><span class="line">       File f=<span class="keyword">new</span> File(fileName);</span><br><span class="line">       InputStream in=<span class="keyword">new</span> FileInputStream(f);</span><br><span class="line">       <span class="keyword">byte</span>[] b=<span class="keyword">new</span> <span class="keyword">byte</span>[(<span class="keyword">int</span>)f.length()];</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; b.length; i++) &#123;</span><br><span class="line">           b[i]=(<span class="keyword">byte</span>)in.read();</span><br><span class="line">       &#125;</span><br><span class="line">       in.close();</span><br><span class="line">       System.out.println(<span class="keyword">new</span> String(b));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.字節流讀取文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">hello</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">       String fileName=<span class="string">"D:"</span>+File.separator+<span class="string">"hello.txt"</span>;</span><br><span class="line">       File f=<span class="keyword">new</span> File(fileName);</span><br><span class="line">       InputStream in=<span class="keyword">new</span> FileInputStream(f);</span><br><span class="line">       <span class="keyword">byte</span>[] b=<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">       <span class="keyword">int</span> count =<span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> temp=<span class="number">0</span>;</span><br><span class="line">       <span class="keyword">while</span>((temp=in.read())!=(-<span class="number">1</span>))&#123;</span><br><span class="line">           b[count++]=(<span class="keyword">byte</span>)temp;</span><br><span class="line">       &#125;</span><br><span class="line">       in.close();</span><br><span class="line">       System.out.println(<span class="keyword">new</span> String(b));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>OutputStream的應用</p>
+<p>1.向文件中寫入字符串</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">hello</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">       String fileName=<span class="string">"D:"</span>+File.separator+<span class="string">"hello.txt"</span>;</span><br><span class="line">       File f=<span class="keyword">new</span> File(fileName);</span><br><span class="line">       OutputStream out =<span class="keyword">new</span> FileOutputStream(f);</span><br><span class="line">       String str=<span class="string">"Hello World"</span>;</span><br><span class="line">       <span class="keyword">byte</span>[] b=str.getBytes();</span><br><span class="line">       out.write(b);</span><br><span class="line">       out.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.逐字節寫入文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">hello</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">       String fileName=<span class="string">"D:"</span>+File.separator+<span class="string">"hello.txt"</span>;</span><br><span class="line">       File f=<span class="keyword">new</span> File(fileName);</span><br><span class="line">       OutputStream out =<span class="keyword">new</span> FileOutputStream(f);</span><br><span class="line">       String str=<span class="string">"Hello World！！"</span>;</span><br><span class="line">       <span class="keyword">byte</span>[] b=str.getBytes();</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; b.length; i++) &#123;</span><br><span class="line">           out.write(b[i]);</span><br><span class="line">       &#125;</span><br><span class="line">       out.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.</p>
 
         </div>
     
@@ -250,7 +242,7 @@
         <ul>
             
             <li>
-                <a class="footer-post" href="/undefined/undefined/undefined/page/">page</a>
+                <a class="footer-post" href="/undefined/undefined/undefined/page/">java</a>
             </li>
             
             <li>
